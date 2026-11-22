@@ -31,13 +31,15 @@ for js in jsons:
     break
 
 embedding_df=pd.DataFrame.from_records(json_dict, index="id")
+joblib.dump(embedding_df, "embeddings.joblib")
+
 # print(np.vstack(embedding_df["embedding"].values))
 # print(np.vstack(embedding_df["embedding"]).shape)
 # query=input("What you want: ")
-embeded_question=create_embeddings("When does the amount of alcohol increases")[0]
+# embeded_question=create_embeddings("When does the amount of alcohol increases")[0]
 
-similarities=cosine_similarity(np.vstack(embedding_df['embedding'].values),[embeded_question])
-print(similarities)
-highly_matched=np.argmax(similarities)
-print(embedding_df.iloc[highly_matched])
+# similarities=cosine_similarity(np.vstack(embedding_df['embedding'].values),[embeded_question])
+# print(similarities)
+# highly_matched=np.argmax(similarities)
+# print(embedding_df.iloc[highly_matched])
 
