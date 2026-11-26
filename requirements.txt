@@ -1,0 +1,9 @@
+pandas
+numpy
+json
+os
+sklearn
+joblib
+requests
+whisper
+subprocess
