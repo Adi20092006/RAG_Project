@@ -29,6 +29,8 @@ for js in jsons:
         json_dict.append(chunk)
 
 embedding_df=pd.DataFrame.from_records(json_dict)
+
+# dumping embeddings with all the details
 joblib.dump(embedding_df, "embeddings.joblib")
 
 # print(np.vstack(embedding_df["embedding"].values))

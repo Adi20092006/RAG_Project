@@ -1,8 +1,7 @@
 import numpy as np
-from read_chunks import create_embeddings
+from chunks_to_embeddings import create_embeddings
 from sklearn.metrics.pairwise import cosine_similarity
 import joblib
-# import pandas as pd
 import requests
 
 embeds_df=joblib.load("embeddings.joblib")
@@ -20,6 +19,7 @@ highly_matched_df=embeds_df.iloc[highly_matched]
 
 print(highly_matched_df)
 
+# prompt for llama3.2 to get a good output
 prompt=f"""In some series of videos that are stored user wants to know where to the thing he is looking for, so the here is information of the videos that highly matches the user question below,so i am providing the subtitled text of the videos, videos time stamp(start and end), video title and id:
 {highly_matched_df[["id","start","end","text","title"]].to_json()}
 
@@ -27,7 +27,7 @@ prompt=f"""In some series of videos that are stored user wants to know where to 
 '{query}'
 Based on the question user is asking, tell the user where he can find the answer(at what time stamp and the videos title) he is looking for in the series of the videos.Don't give it in a regular format, give it in a human readable format.
 """
-
+# To see how overall looks like :
 # with open("prompt.txt", "w") as f:
 #     f.write(prompt)
 
